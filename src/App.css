@@ -29,7 +29,7 @@ h1, h2, h3, h4{
   background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
   height: auto;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 /* FORM CONTAINER */
 .form-container{
@@ -68,7 +68,7 @@ h1, h2, h3, h4{
 /* FORM */
 .section-form{
   background-color: whitesmoke;
-  height: 100vh;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -152,4 +152,26 @@ legend{
 }
 .level{
   color: #042965;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .form-container {
+    flex-direction: row;
+    width: 100%;
+  }
+  .greetings-container{
+    flex: 1;
+    height: 80%;
+    justify-content: end;
+  }
+  .section-form {
+    flex: 1;
+    height: 80%;
+    justify-content: center;
+  }
+  .greetings-container {
+    justify-content: center;
+    padding: 40px;
+  }
 }
