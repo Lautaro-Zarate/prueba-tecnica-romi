@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+  --color-primary: #7674e8;
+  --color-secondary: #413EE0;
+  --color-tertiary: #246260;
+  --color-quaternary: #275090;
+  --color-text: #dbdbdb;
+  --color-text-secondary: #151313;
+  --text-titles: "Anton", sans-serif;
+  --text: "Montserrat", sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: var(--text);
+}
+h1, h2, h3, h4{
+  font-family: var(--text-titles);
+  font-weight: 500;
+}
+/* MAIN */
+.main-container{
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+/* FORM CONTAINER */
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  margin: 30px;
+}
+/* GREETINGS */
+.greetings-container{
+  background-image: url(/src/assets/bg.png);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  padding: 10px;
+  gap: 10px;
+}
+.greetings-container h1{
+  font-size: 2rem;
+}
+.greetings-container p{
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* FORM */
+.section-form{
+  background-color: var(--color-text);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-form h2{
+  margin-top: 15px;
+  color: var(--color-quaternary);
+}
