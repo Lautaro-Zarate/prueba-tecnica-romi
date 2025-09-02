@@ -1,11 +1,13 @@
-import { useState } from "react"
+export const Fieldsets = ({label, title, onChange, hasSymptom, painLevel}) => {
 
-export const Fieldsets = ({label, title}) => {
-    const [showPainLevel, setShowPainLevel] = useState(false);
-    
-    const handleRadioChange = (event) => {
-        setShowPainLevel(event.target.value === 'Sí')
-    }
+const handleRadioChange = (event) => {
+    const value = event.target.value === "Sí";
+    onChange(label, value, painLevel);
+};
+
+const handlePainLevelChange = (event) => {
+    onChange(label, hasSymptom, Number(event.target.value));
+};
 
     return(
         <div>
@@ -13,21 +15,23 @@ export const Fieldsets = ({label, title}) => {
                 <legend>{title}</legend>
                     <div className="radio-container">
                         <label>
-                            <input type="radio" name={label} value="Sí" onChange={handleRadioChange}/>
+                            <input type="radio" name={label} value="Sí" checked={hasSymptom === true} onChange={handleRadioChange}/>
                             Sí
                         </label>
                         <label>
-                            <input type="radio" name={label} value="No" onChange={handleRadioChange}/>
+                            <input type="radio" name={label} value="No" checked={hasSymptom === false} onChange={handleRadioChange}/>
                             No
                         </label>
                     </div>
-                    {showPainLevel && (
+                    {hasSymptom && (
                         <div className="pain-level-container">
                             <label>Nivel de dolor <span className="level">(1 al 10)</span></label>
                             <input 
                             type="number" 
                             min={1}
                             max={10}
+                            value={painLevel || ''}
+                            onChange={handlePainLevelChange}
                             />
                         </div>
                     )}
