@@ -24,10 +24,10 @@ export const Fieldsets = ({label, title, register, errors, watch}) => {
                         </label>
                     </div>
                     {errors[label]?.hasSymptom && (
-                        <p className="error-message">{errors[label].hasSymptom.message}</p>
+                        <p className="error-message" aria-live="assertive">{errors[label].hasSymptom.message}</p>
                     )}
                     {showPainLevel && (
-                        <div className="pain-level-container">
+                        <div className="pain-level-container fade-in">
                             <div className="pain-level-wrapper">
                                 <label>Nivel de dolor <span className="level">(1 al 10)</span></label>
                             </div>
@@ -39,7 +39,7 @@ export const Fieldsets = ({label, title, register, errors, watch}) => {
                             {...register(`${label}.painLevel`)}
                             />
                             {errors[label]?.painLevel && (
-                            <p className="error-message">{errors[label].painLevel.message}</p>
+                            <p className="error-message" aria-live="assertive">{errors[label].painLevel.message}</p>
                             )}
                         </div>
                     )}
