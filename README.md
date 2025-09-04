@@ -1,12 +1,48 @@
-# React + Vite
+# 🩺 Proyecto técnico ROMI  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es un **formulario interactivo y accesible** que permite a los pacientes reportar síntomas comunes (dolor de cabeza, fiebre, tos y dolor de garganta) y, en caso de presentar alguno, indicar el nivel de dolor del 1 al 10.  
 
-Currently, two official plugins are available:
+El objetivo fue **practicar formularios dinámicos en React con validaciones** usando **React Hook Form** y **Yup**, aplicando también conceptos de accesibilidad y diseño responsivo.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Tecnologías utilizadas  
+- **React** – creación de la UI.  
+- **React Hook Form** – manejo del estado del formulario y validaciones.  
+- **Yup** – esquema de validación declarativa.  
+- **CSS3** – estilos responsivos y animaciones.  
+- **Vite** – bundler rápido para desarrollo local.  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Instalación y ejecución en local  
+
+1. Clonar el repositorio:  
+   ```bash
+   git clone https://github.com/Lautaro-Zarate/prueba-tecnica-romi
+   
+   cd romi-challenge
+   
+   npm install
+   
+   npm run dev
+
+2- Luego entrar al localHost
+
+![Preview del proyecto](src/assets/captura-proyecto.png)
+
+## 📌 Funcionalidades principales
+
+* **Preguntas dinámicas**: Si el paciente responde **"Sí"**, aparece un input para ingresar nivel de dolor.
+
+* **Validaciones con Yup**:
+
+    * Todos los síntomas deben tener respuesta.
+
+    * Nivel de dolor obligatorio entre 1 y 10 si corresponde.
+
+* **Accesibilidad mejorada**: uso de fieldset, legend, aria-live y mensajes de error legibles por lectores de pantalla.
+
+* **Diseño responsivo**: mobile-first y adaptable desde 768px en adelante.
+
+* Mini animación hecho con CSS al mostrar campos adicionales.
