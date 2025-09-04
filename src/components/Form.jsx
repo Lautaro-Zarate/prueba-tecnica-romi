@@ -1,66 +1,68 @@
 import { Fieldsets } from "./Fieldsets"
-import { useState } from "react"
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { formSchema } from "../schemas/formSchema";
+
 export const Form = () => {
-    const [formData, setFormData] = useState({
-        Headache: { hasSymptom: null, painLevel: null},
-        Fever: { hasSymptom: null, painLevel: null},
-        Cough: { hasSymptom: null, painLevel: null},
-        Sorethroat: { hasSymptom: null, painLevel: null},
+
+    const {
+        register,
+        handleSubmit, 
+        formState: {errors}, 
+        reset, 
+        watch} = useForm({
+        
+        resolver: yupResolver(formSchema),
+        defaultValues: {
+            headache: { hasSymptom: null, painLevel: null },
+            fever: { hasSymptom: null, painLevel: null },
+            cough: { hasSymptom: null, painLevel: null },
+            sorethroat: { hasSymptom: null, painLevel: null },
+        },
     })
 
-    const handleFieldsetChange = (label, hasSymptom, painLevel) => {
-        setFormData((prevData) => ({
-        ...prevData,
-        [label]: { hasSymptom, painLevel },
-        }));
-    };
+    const submitForm = (data) => {
+    console.log("Form Data:", data)
+    reset();
+    }
 
     const handleCancel = () => {
-        setFormData({
-            Headache: { hasSymptom: null, painLevel: null },
-            Fever: { hasSymptom: null, painLevel: null },
-            Cough: { hasSymptom: null, painLevel: null },
-            Sorethroat: { hasSymptom: null, painLevel: null },
-        })
+        reset();
     }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Form enviado", formData)
-    }
+    
     return(
         <section className="section-form">
             <h2>¿Cuáles son tus síntomas?</h2>
-            <form>
+            <form onSubmit={handleSubmit(submitForm)}>
                 <div className="fields-container">
                     <Fieldsets 
-                    label="Headache" 
+                    label="headache" 
                     title="¿Presenta dolor de cabeza?" 
-                    onChange={handleFieldsetChange} 
-                    hasSymptom={formData.Headache.hasSymptom} 
-                    painLevel={formData.Headache.painLevel}/>
+                    register={register}
+                    errors={errors}
+                    watch={watch}/>
                     <Fieldsets 
-                    label="Fever" 
+                    label="fever" 
                     title="¿Presenta fiebre?" 
-                    onChange={handleFieldsetChange} 
-                    hasSymptom={formData.Fever.hasSymptom} 
-                    painLevel={formData.Fever.painLevel}/>
+                    register={register}
+                    errors={errors}
+                    watch={watch}/>
                     <Fieldsets 
-                    label="Cough" 
+                    label="cough" 
                     title="¿Presenta tos?" 
-                    onChange={handleFieldsetChange} 
-                    hasSymptom={formData.Cough.hasSymptom} 
-                    painLevel={formData.Cough.painLevel}/>
+                    register={register}
+                    errors={errors}
+                    watch={watch}/>
                     <Fieldsets 
-                    label="Sorethroat" 
+                    label="sorethroat" 
                     title="¿Presenta dolor de garganta?" 
-                    onChange={handleFieldsetChange} 
-                    hasSymptom={formData.Sorethroat.hasSymptom} 
-                    painLevel={formData.Sorethroat.painLevel}/>
+                    register={register}
+                    errors={errors}
+                    watch={watch}/>
                 </div>
                 <div className="buttons-container">
                     <button className="btn-cancel" type="button" onClick={handleCancel}>Cancelar</button>
-                    <button className="btn-submit" type="submit" onClick={handleSubmit}>Enviar</button>
+                    <button className="btn-submit" type="submit" >Enviar</button>
                 </div>
             </form>
         </section>

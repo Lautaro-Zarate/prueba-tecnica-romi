@@ -143,7 +143,8 @@ legend{
 }
 .pain-level-container{
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  gap: 12px;
   font-size: 1.1rem;
 }
 .pain-level-container input{
@@ -153,11 +154,19 @@ legend{
   padding: 2px 12px;
   font-size: 1.1rem;
   color: var(--color-quaternary);
+  width: 30%;
+}
+.pain-level-wrapper{
+  display: flex;
+  flex-direction: column;
 }
 .level{
   color: #042965;
 }
-
+.error-message{
+  color: red;
+  font-size: 0.9rem;
+}
 /* RESPONSIVE */
 @media (min-width: 768px) {
   .form-container {

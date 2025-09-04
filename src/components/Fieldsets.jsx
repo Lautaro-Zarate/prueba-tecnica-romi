@@ -1,13 +1,12 @@
-export const Fieldsets = ({label, title, onChange, hasSymptom, painLevel}) => {
+import { useState, useEffect } from "react";
+export const Fieldsets = ({label, title, register, errors, watch}) => {
 
-const handleRadioChange = (event) => {
-    const value = event.target.value === "Sí";
-    onChange(label, value, painLevel);
-};
+    const [showPainLevel, setShowPainLevel] = useState(false);
 
-const handlePainLevelChange = (event) => {
-    onChange(label, hasSymptom, Number(event.target.value));
-};
+    const hasSymptomValue = watch(`${label}.hasSymptom`);
+    useEffect(() => {
+        setShowPainLevel(hasSymptomValue === 'Yes')
+    }, [hasSymptomValue]);
 
     return(
         <div>
@@ -15,24 +14,33 @@ const handlePainLevelChange = (event) => {
                 <legend>{title}</legend>
                     <div className="radio-container">
                         <label>
-                            <input type="radio" name={label} value="Sí" checked={hasSymptom === true} onChange={handleRadioChange}/>
+                            <input type="radio" name={label} value="Yes" {...register(`${label}.hasSymptom`)}
+                            />
                             Sí
                         </label>
                         <label>
-                            <input type="radio" name={label} value="No" checked={hasSymptom === false} onChange={handleRadioChange}/>
+                            <input type="radio" name={label} value="No" {...register(`${label}.hasSymptom`)}/>
                             No
                         </label>
                     </div>
-                    {hasSymptom && (
+                    {errors[label]?.hasSymptom && (
+                        <p className="error-message">{errors[label].hasSymptom.message}</p>
+                    )}
+                    {showPainLevel && (
                         <div className="pain-level-container">
-                            <label>Nivel de dolor <span className="level">(1 al 10)</span></label>
+                            <div className="pain-level-wrapper">
+                                <label>Nivel de dolor <span className="level">(1 al 10)</span></label>
+                            </div>
                             <input 
                             type="number" 
                             min={1}
                             max={10}
-                            value={painLevel || ''}
-                            onChange={handlePainLevelChange}
+                            name={label}
+                            {...register(`${label}.painLevel`)}
                             />
+                            {errors[label]?.painLevel && (
+                            <p className="error-message">{errors[label].painLevel.message}</p>
+                            )}
                         </div>
                     )}
             </fieldset>
